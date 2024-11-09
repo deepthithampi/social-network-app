@@ -42,4 +42,14 @@ export const getThoughtById = async (req: Request, res: Response) => {
    * @returns the created Thought object
    */
 
-  export const createThought = async ()
+  export const createThought = async (req:Request, res: Response) =>{
+    const {thoughText, username, userId} = req.body;
+    try{
+
+        const newThought = await Thought.create({ thoughText,username});
+        await User.findByIdAndUpdate(userId,{$push:{thoughts: newThought._id}})
+        res.status(201).json(newThought);
+    }catch(e : any){
+        res.status(400).json({ message: e.message });
+    }
+  }
