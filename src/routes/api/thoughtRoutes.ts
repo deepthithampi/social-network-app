@@ -15,7 +15,7 @@ const router = Router();
 router.route('/').get(getAllThoughts).post(createThought) ;
 
 // /api/thoughts/:toughtId
-router.route('/:thoughtId').get(getAllThoughts).put(updateThought).delete(deleteThought);
+router.route('/:thoughtId').get(getThoughtById).put(updateThought).delete(deleteThought);
 
 // /api/thoughts/:thoughtId/reactions
 router.route('/:thoughtId/reactions').post(addReaction);
