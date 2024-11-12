@@ -46,11 +46,15 @@ const seedDatabase = async () =>{
             {$push: {thoughts: thought._id}}
         )
     }
-
+    console.table(userData);
+    console.table(thoughtData);
+    console.info('Seeding complete! 🌱');
+    process.exit(0);
 
 
  }catch(e){
-
+    console.error('Error seeding database : ',e)
+    process.exit(1);
  }
 };
 
