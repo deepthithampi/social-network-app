@@ -21,9 +21,9 @@ export const getAllUsers = async (_req: Request, res: Response) => {
  * @returns a single User object
  */
 export const getUserById = async (req: Request, res: Response) => {
-  const { id } = req.params;
+  //const { _id } = req.params.userId;
   try {
-    const user = await User.findById(id).populate('thoughts').populate('friends');
+    const user = await User.findById(req.params.userId).populate('thoughts').populate('friends');
     if (user) {
       res.json(user);
     } else {
