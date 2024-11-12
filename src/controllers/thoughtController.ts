@@ -1,4 +1,5 @@
 import {Request,Response} from 'express';
+// import mongoose from 'mongoose';
 import { Thought, User } from '../models/index.js'
 
 /**
@@ -23,9 +24,10 @@ export const getAllThoughts = async(_req: Request,res: Response) => {
  * @returns a single Thought object
  */
 export const getThoughtById = async (req: Request, res: Response) => {
-    const { id } = req.params;
+    // const { id } = req.params;
+    console.log("REQ.PARAMS.ID",req.params.thoughtId)
     try {
-      const thought = await Thought.findById(id);
+      const thought = await Thought.findById(req.params.thoughtId);
       if (thought) {
         res.json(thought);
       } else {
@@ -43,10 +45,10 @@ export const getThoughtById = async (req: Request, res: Response) => {
    */
 
   export const createThought = async (req:Request, res: Response) =>{
-    const {thoughText, username, userId} = req.body;
+    const {thoughtText, username, userId} = req.body;
     try{
 
-        const newThought = await Thought.create({ thoughText,username});
+        const newThought = await Thought.create({ thoughtText,username});
         await User.findByIdAndUpdate(userId,{$push:{thoughts: newThought._id}})
         res.status(201).json(newThought);
     }catch(e : any){
