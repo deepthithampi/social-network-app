@@ -79,7 +79,7 @@ export const updateUser = async (req: Request, res: Response) => {
  */
 export const deleteUser = async (req: Request, res: Response) => {
   try {
-    const user = await User.findOneAndDelete({ _id: req.params.id });
+    const user = await User.findOneAndDelete({ _id: req.params.userId });
 
     if (!user) {
       res.status(404).json({ message: 'No user with that ID' });

@@ -43,6 +43,7 @@ const userSchema = new Schema<IUser>(
     },
 );
 
+
 // getting the friend count 
 userSchema.virtual('friendCount').get(function(){
     return this.friends.length;

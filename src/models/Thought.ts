@@ -10,7 +10,7 @@ interface IReaction extends Document {
 // the thought interface
 interface IThought extends Document{
 
-    thoughText : string,
+    thoughtText : string,
     createdAt : Date,
     username : string,
     reactions : IReaction[];
@@ -35,7 +35,7 @@ const reactionSchema = new Schema<IReaction>(
         createdAt: {
             type: Date,
             default : Date.now,
-            get: (timestamp: Date)=> (timestamp?timestamp.toLocaleString():''),
+            get: (timestamp?: Date)=> (timestamp?timestamp.toLocaleString():''),
         } as any,
     },
     {
@@ -47,7 +47,7 @@ const reactionSchema = new Schema<IReaction>(
 // the thought schema
 const thoughtSchema = new Schema<IThought>(
     {
-      thoughText : {
+      thoughtText : {
         type : String,
         required : true,
         maxlength : 280,
@@ -57,7 +57,7 @@ const thoughtSchema = new Schema<IThought>(
       createdAt : {
         type : Date,
         default : Date.now,
-        get : (timestamp : Date) =>(timestamp? timestamp.toLocaleString(): ''),
+        get : (timestamp?: Date) =>(timestamp? timestamp.toLocaleString(): ''),
 
       } as any,
       username : {
@@ -71,7 +71,7 @@ const thoughtSchema = new Schema<IThought>(
             virtuals: true,
             getters: true,
         },
-        id: false, // disabling the vitual di
+        id: false, // disabling the vitual id
         timestamps: true,
     }
 
