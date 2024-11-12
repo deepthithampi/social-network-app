@@ -30,11 +30,22 @@ const seedDatabase = async () =>{
         const username = getRandomArrItem(userData).username; //associating thought with a random username
         const reactions = getRandomReactions(2); //each thought has 2 randim reactins
          
+        thoughts.push({  // pushed to the tthoughts arrat
+            thoughText,
+            username,
+            reactions,
+        });
     }
     //insert thoughts into the db
+    const thoughtData = await Thought.create(thoughts);
 
     //update users to include thought references
-
+    for( const thought of thoughtData){
+        await User.findOneAndUpdate(
+            {username : thought.username},
+            {$push: {thoughts: thought._id}}
+        )
+    }
 
 
 
