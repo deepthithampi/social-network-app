@@ -23,4 +23,19 @@ export const getRandonUsername = () => getRandomArrItem(usernames);
 //generate a random emailId based on username
 export const getRandomEmail = (username : string) => `${username}@example.com`;
 
-//generate a random thought text
+//generate a random thought text -> use the getRandomArrItem to get a random thouhgt
+export const getRandomThought = () => getRandomArrItem(thoughTexts);
+
+//generate random reactions (for Thought model)
+export const getRandomReactions = (numReactions : number) : {reactionBody: string;username : string;createdAt : Date}[]=>{
+  const reactions = [];
+  for (let i = 0;i< numReactions;i++){
+    reactions.push({
+        reactionBody : getRandomThought(), // a thought text as a reaction
+        username: getRandonUsername(), // random username 
+        createdAt: new Date(),
+    });
+  }
+  return reactions;
+
+}
