@@ -7,7 +7,7 @@ import {
   deleteUser,
   addFriend,
   removeFriend,
-} from '../../controllers/userControntroller';
+} from '../../controllers/userControntroller.js';
 
 const router = Router();
 

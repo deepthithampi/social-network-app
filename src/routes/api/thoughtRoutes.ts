@@ -7,7 +7,7 @@ deleteThought,
 addReaction,
 removeReaction,
 updateThought,
-}from '../../controllers/thoughtController' ;
+}from '../../controllers/thoughtController.js' ;
 
 const router = Router();
 

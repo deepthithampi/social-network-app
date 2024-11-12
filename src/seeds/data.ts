@@ -17,8 +17,17 @@ const thoughTexts = [
 //get a random item from array
 export const getRandomArrItem = (arr: any[]) => arr[Math.floor(Math.random() * arr.length)];
 
-//generat random username
-export const getRandonUsername = () => getRandomArrItem(usernames);
+const usedUsernames = new Set<string>();
+//generat random username which are unique
+export const getRandonUsername = () => {
+  let username;
+  do {
+    username = getRandomArrItem(usernames);
+  } while (usedUsernames.has(username));
+  usedUsernames.add(username);
+  return username;
+}
+  //getRandomArrItem(usernames);
 
 //generate a random emailId based on username
 export const getRandomEmail = (username : string) => `${username}@example.com`;

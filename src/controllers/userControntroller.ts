@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import User from '../models/User';
-import Thought from '../models/Thought';
+import { Thought, User } from '../models/index.js'
+
 
 /**
  * GET All Users /users
